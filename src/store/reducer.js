@@ -1,11 +1,15 @@
-function reducer(state = { count: 0 }, action) {
-    const count = state.count
-    switch (action.type) {
-      case 'increase':
-        return { count: count + 1 }
-      default:
-        return state
-    }
-  }
+import { INCREASE, DECREASE } from '../action/Action';
 
-  export default reducer 
+function reducer(state = { value: 0 }, action) {
+    const value = state.value
+    switch (action.type) {
+        case INCREASE:
+            return { value: value + 1 }
+        case DECREASE:
+            return { value: value + 1 }
+        default:
+            return state
+    }
+}
+
+export default reducer 
