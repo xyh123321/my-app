@@ -4,25 +4,28 @@ import Counter from '../counter';
 class CounterGroup extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {size:0, total:0}
+        this.state = { size: 0, total: 0 }
     }
 
     handlerResize = (event) => {
-        this.setState({
-            size: event.target.value ? parseInt(event.target.value) : 0,
-            total:0
-        });
+        const newSize = event.target.value ? parseInt(event.target.value) : 0;
+        if (this.state.size !== newSize) {
+            this.setState({
+                size: newSize,
+                total: 0
+            });
+        }
     }
 
     handleIncrease = () => {
         this.setState((prevState) => ({
-            total: prevState.total +1
+            total: prevState.total + 1
         }))
     }
 
     handleDecrease = () => {
         this.setState((prevState) => ({
-            total: prevState.total -1
+            total: prevState.total - 1
         }))
     }
 
@@ -33,7 +36,7 @@ class CounterGroup extends React.Component {
                 <div>
                     <label>
                         Group size:
-                        <input onBlur={this.handlerResize} defaultValue={0}/>
+                        <input onBlur={this.handlerResize} defaultValue={0} />
                     </label>
                 </div>
                 <div>
@@ -42,7 +45,7 @@ class CounterGroup extends React.Component {
                     </label>
                 </div>
                 {
-                    initArray.map(key => <Counter groupSize={this.state.size}  handleIncrease={this.handleIncrease} handleDecrease={this.handleDecrease} key={key}/>)
+                    initArray.map(key => <Counter groupSize={this.state.size} handleIncrease={this.handleIncrease} handleDecrease={this.handleDecrease} key={key} />)
                 }
             </div>
         )
