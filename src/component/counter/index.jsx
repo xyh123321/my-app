@@ -2,7 +2,7 @@ import React from 'react';
 class Counter extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value:0};
+        this.state = {value:0, groupSize:0};
     }
 
     onDecrease = () => {
@@ -27,6 +27,16 @@ class Counter extends React.Component {
                <button onClick={this.onIncrease}>+</button>
            </div>
           );
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState){
+        if(nextProps.groupSize !== prevState.groupSize){
+            return {
+                value:0,
+                groupSize:nextProps.groupSize
+            }
+        }
+        return null;
     }
 }
 
